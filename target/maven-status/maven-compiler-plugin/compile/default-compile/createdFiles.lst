@@ -1,0 +1,10 @@
+com\niit\daoimpl\BlogDaoImpl.class
+com\niit\domain\Blog.class
+com\niit\domain\User.class
+com\niit\domain\Forum.class
+com\niit\dao\BlogDao.class
+com\niit\domain\Friend.class
+com\niit\domain\BlogComment.class
+com\niit\config\ApplicationContextConfig.class
+com\niit\domain\Job.class
+com\niit\domain\ForumComment.class
