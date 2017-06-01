@@ -38,9 +38,9 @@ public class BlogDaoImpl implements BlogDao {
 
 	}
 
-	public boolean deleteBlog(String id) {
+	public boolean deleteBlog(int id) {
 		try {
-			sessionFactory.getCurrentSession().delete(id);
+			sessionFactory.getCurrentSession().delete(getBlogById(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -48,7 +48,7 @@ public class BlogDaoImpl implements BlogDao {
 		return true;
 	}
 
-	public Blog getBlogById(String id) {
+	public Blog getBlogById(int id) {
 		return (Blog) sessionFactory.getCurrentSession().get(Blog.class, id);
 	}
 }

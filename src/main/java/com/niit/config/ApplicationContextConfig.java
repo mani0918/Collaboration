@@ -20,66 +20,61 @@ import com.niit.domain.Forum;
 import com.niit.domain.ForumComment;
 import com.niit.domain.Friend;
 import com.niit.domain.Job;
-import com.niit.domain.User;
+
+import com.niit.domain.UserTable;
 
 @Configuration
-	@ComponentScan("com.niit")
-	@EnableTransactionManagement
-	public class ApplicationContextConfig {
+@ComponentScan("com.niit")
+@EnableTransactionManagement
+public class ApplicationContextConfig {
 
-		@Bean(name = "dataSource")
-		public DataSource getH2DataSource() {
+	@Bean(name = "dataSource")
+	public DataSource getH2DataSource() {
 
-			DriverManagerDataSource dataSource = new DriverManagerDataSource();
-				
-			dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-			dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 
-			dataSource.setUsername("MA");
-			dataSource.setPassword("ma");
-			
-			
-			return dataSource;
-		}
+		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 
-		
-		private Properties getHibernateProperties() {
-			Properties properties = new Properties();
-			
-			properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-			//properties.put("hibernate.show_sql", "true");
-			properties.setProperty("hibernate.hbm2ddl.auto", "update");
-			properties.put("hibernate.show_sql", "true"); //optional
-			return properties;
-		}
+		dataSource.setUsername("MA");
+		dataSource.setPassword("ma");
 
-		@Autowired
-		@Bean(name = "sessionFactory")
-		public SessionFactory getSessionFactory(DataSource dataSource) {
+		return dataSource;
+	}
 
-			LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-			sessionBuilder.addProperties(getHibernateProperties());
+	private Properties getHibernateProperties() {
+		Properties properties = new Properties();
+
+		properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+		// properties.put("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		properties.put("hibernate.show_sql", "true"); // optional
+		return properties;
+	}
+
+	@Autowired
+	@Bean(name = "sessionFactory")
+	public SessionFactory getSessionFactory(DataSource dataSource) {
+
+		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.addAnnotatedClass(Blog.class);
 		sessionBuilder.addAnnotatedClass(BlogComment.class);
 		sessionBuilder.addAnnotatedClass(Forum.class);
 		sessionBuilder.addAnnotatedClass(ForumComment.class);
 		sessionBuilder.addAnnotatedClass(Friend.class);
 		sessionBuilder.addAnnotatedClass(Job.class);
-		sessionBuilder.addAnnotatedClass(User.class);
-			return sessionBuilder.buildSessionFactory();
-		}
-
-		@Autowired
-		@Bean(name = "transactionManager")
-		public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
-			HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
-
-			return transactionManager;
-		}
-
-		
-
+		sessionBuilder.addAnnotatedClass(UserTable.class);
+		return sessionBuilder.buildSessionFactory();
 	}
-	
 
+	@Autowired
+	@Bean(name = "transactionManager")
+	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+
+		return transactionManager;
+	}
+
+}
