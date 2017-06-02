@@ -44,9 +44,9 @@ public class JobDaoImpl implements JobDao {
 	}
 
 	@Override
-	public boolean deleteJob(String id) {
+	public boolean deleteJob(int id) {
 		try{
-			sessionFactory.getCurrentSession().delete(id);
+			sessionFactory.getCurrentSession().delete(getJobById(id));
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -56,7 +56,7 @@ public class JobDaoImpl implements JobDao {
 	}
 
 	@Override
-	public Job getJobById(String id) {
+	public Job getJobById(int id) {
 		return (Job) sessionFactory.getCurrentSession().get(Job.class, id);
 	}
 

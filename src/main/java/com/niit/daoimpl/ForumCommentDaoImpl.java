@@ -41,9 +41,9 @@ public class ForumCommentDaoImpl implements ForumCommentDao {
 	}
 
 	@Override
-	public boolean deleteForumComment(String id) {
+	public boolean deleteForumComment(int id) {
 		try{
-			sessionFactory.getCurrentSession().delete(id);
+			sessionFactory.getCurrentSession().delete(getForumCommentById(id));
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -53,7 +53,7 @@ public class ForumCommentDaoImpl implements ForumCommentDao {
 	}
 
 	@Override
-	public ForumComment getForumCommentById(String id) {
+	public ForumComment getForumCommentById(int id) {
 		return (ForumComment) sessionFactory.getCurrentSession().get(ForumComment.class, id);
 		
 	}

@@ -10,8 +10,9 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table
 public class Friend {
-@Id
+
 	private int userId;
+	@Id
 	private int friendId;
 	private String status;
 	

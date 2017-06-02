@@ -43,9 +43,9 @@ public class BlogCommentDaoImpl implements BlogCommentDao{
 	}
 
 	@Override
-	public boolean deleteBlogComment(String id) {
+	public boolean deleteBlogComment(int id) {
 		try{
-			sessionFactory.getCurrentSession().delete(id);
+			sessionFactory.getCurrentSession().delete(getBlogCommentById(id));
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -55,7 +55,7 @@ public class BlogCommentDaoImpl implements BlogCommentDao{
 	}
 
 	@Override
-	public BlogComment getBlogCommentById(String id) {
+	public BlogComment getBlogCommentById(int id) {
 		return (BlogComment) sessionFactory.getCurrentSession().get(BlogComment.class, id);
 	}
 

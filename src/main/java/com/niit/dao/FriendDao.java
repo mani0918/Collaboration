@@ -12,7 +12,7 @@ public boolean insertFriend(Friend friend);
 	
 	public List<Friend> list();
 	
-	public boolean deleteFriend(String id);
+	public boolean deleteFriend(int id);
 	
-	public Friend getFriendById(String id);
+	public Friend getFriendById(int id);
 }

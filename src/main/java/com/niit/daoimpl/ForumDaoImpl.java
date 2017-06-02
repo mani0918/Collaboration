@@ -43,9 +43,9 @@ public class ForumDaoImpl implements ForumDao {
 	}
 
 	
-	public boolean deleteForum(String id) {
+	public boolean deleteForum(int id) {
 		try{
-			sessionFactory.getCurrentSession().delete(id);
+			sessionFactory.getCurrentSession().delete(getForumById(id));
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -55,7 +55,7 @@ public class ForumDaoImpl implements ForumDao {
 	}
 
 
-	public Forum getForumById(String id) {
+	public Forum getForumById(int id) {
 		
 		return (Forum) sessionFactory.getCurrentSession().get(Forum.class, id);
 		

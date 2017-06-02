@@ -14,4 +14,5 @@ public interface UserTableDao {
 
 	public UserTable getUserTableById(int id);
 
+	public boolean validate(String emailId , String password);
 }
